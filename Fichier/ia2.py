@@ -100,11 +100,10 @@ def set_move(x, y, player):
 def minimax(state, depth, player, difficulty):
     # Différents niveaux de difficulté
     if difficulty == "Facile":
-        # Pour la difficulté facile, faites un choix aléatoire.
         moves = empty_cells(state)
         return random.choice(moves + [-1, -1, 0])
 
-    elif difficulty == "Moyen" and depth > 2:
+    elif difficulty == "Moyenne" and depth > 2:
         # Limitez la profondeur de recherche pour une difficulté moyenne.
         depth = 2
 

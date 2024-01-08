@@ -71,11 +71,12 @@ class TicTacToeGame:
 
         self.current_player = 'X'
 
-def start_game_1_player():
+def start_game_1_player(difficulty):
     root = tk.Tk()
-    root.title("Tic Tac Toe - 1 Joueur")
-    game = TicTacToeGame(root, "1 Joueur")
+    root.title(f"Tic Tac Toe - 1 Joueur ({difficulty})")
+    TicTacToeGame(root, mode="1 Joueur", difficulty=difficulty)  # Initialisez votre jeu ici
     root.mainloop()
+
 
 def start_game_2_players():
     root = tk.Tk()

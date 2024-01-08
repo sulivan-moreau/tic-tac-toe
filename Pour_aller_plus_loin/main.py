@@ -1,5 +1,5 @@
 import tkinter
-import ia
+import ia as ia
 
 def print_winner():
     global win
@@ -15,15 +15,52 @@ def switch_player():
         current_player = 'X'
 
 def check_win(clicked_row, clicked_col):
-    global win
-    # Vérifier les lignes horizontales, verticales et diagonales
-    if ia.wins(ia.board, ia.COMP) or ia.wins(ia.board, ia.HUMAN):
+    # Vérifier les lignes horizontales
+    count = 0
+    for i in range(3):
+        current_button = buttons[i][clicked_col]
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
         print_winner()
 
-    # Vérifier match nul
-    if not win and len(ia.empty_cells(ia.board)) == 0:
-        print("Match nul")
+    # Vérifier les lignes verticales
+    count = 0
+    for i in range(3):
+        current_button = buttons[clicked_row][i]
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
 
+    # Vérifier les lignes diagonales
+    count = 0
+    for i in range(3):
+        current_button = buttons[i][i]
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
+
+    # Vérifier les lignes diagonales inversées
+    count = 0
+    for i in range(3):
+        current_button = buttons[2 - i][i]
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
+
+    if not win:
+        count = 0
+        for col in range(3):
+            for row in range(3):
+                current_button = buttons[col][row]
+                if current_button['text'] == 'X' or current_button['text'] == 'O':
+                    count += 1
+        if count == 9:
+            print("Match nul")
+                  
 def place_symbol(row, column):
     global current_player, win
     clicked_button = buttons[column][row]
